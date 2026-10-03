@@ -1,0 +1,1371 @@
+﻿Summary,Issue key,Issue id,Issue Type,Status,Project key,Project name,Project type,Project lead,Project lead id,Project description,Priority,Resolution,Assignee,Assignee Id,Reporter,Reporter Id,Creator,Creator Id,Created,Updated,Last Viewed,Resolved,Due date,Votes,Description,Environment,Watchers,Watchers Id,Original estimate,Remaining Estimate,Time Spent,Work Ratio,Σ Original Estimate,Σ Remaining Estimate,Σ Time Spent,Security Level,Inward issue link (Relates),Inward issue link (Relates),Outward issue link (Relates),Outward issue link (Relates),Custom field (Development),Custom field (Issue color),Custom field (Rank),Custom field (Start date),Custom field (Status),Custom field (Status),Custom field (Story point estimate),Custom field (Team),Custom field (Vulnerability),Custom field (Vulnerability),Custom field (status ),Status category,Status category changed
+TM_047: Verify that a transaction cannot be created with an invalid transaction date format.,BTMSB-107,10317,Test Case,Passed,BTMSB,Banking Transaction Management System (BTMS),software,Dina Ahmed,712020:bcf5c0a0-35d3-40f1-ac01-e614b8fa4b99,,Medium,,Dina Ahmed,712020:bcf5c0a0-35d3-40f1-ac01-e614b8fa4b99,Dina Ahmed,712020:bcf5c0a0-35d3-40f1-ac01-e614b8fa4b99,Dina Ahmed,712020:bcf5c0a0-35d3-40f1-ac01-e614b8fa4b99,31/Aug/26 3:16 PM,12/Sep/26 10:53 PM,12/Sep/26 10:52 PM,,,0,"
+
+*Steps:*
+Insert a new transaction using a date format other than {{YYYY-MM-DD}}.
+
+{code:sql}INSERT INTO Transactions
+(sender_account, receiver_account, transaction_type, amount, transaction_date)
+VALUES
+(1001, 1002, 'Transfer', 500, '31-08-2026');
+{code}
+
+*Preconditions:*
+
+* Transactions table exists.
+* Sender account {{1001}} exists.
+* Receiver account {{1002}} exists.
+
+*Test Data:*
+
+* sender_account = {{1001}}
+* receiver_account = {{1002}}
+* transaction_type = {{Transfer}}
+* amount = {{500}}
+* transaction_date = {{31-08-2026}}
+
+*Test Environment:*
+MySQL
+
+*Expected Result:*
+Transaction is rejected because the required date format is {{YYYY-MM-DD}}.",,Dina Ahmed,712020:bcf5c0a0-35d3-40f1-ac01-e614b8fa4b99,,,,,,,,,BTMSB-9,,,,{},,0|i0013j:,,,,,,,,,In Progress,12/Sep/26 10:53 PM
+TM_046: Verify that a transaction cannot be created with spaces as the transaction date.,BTMSB-106,10316,Test Case,Passed,BTMSB,Banking Transaction Management System (BTMS),software,Dina Ahmed,712020:bcf5c0a0-35d3-40f1-ac01-e614b8fa4b99,,Medium,,Dina Ahmed,712020:bcf5c0a0-35d3-40f1-ac01-e614b8fa4b99,Dina Ahmed,712020:bcf5c0a0-35d3-40f1-ac01-e614b8fa4b99,Dina Ahmed,712020:bcf5c0a0-35d3-40f1-ac01-e614b8fa4b99,31/Aug/26 3:15 PM,12/Sep/26 10:52 PM,12/Sep/26 10:52 PM,,,0,"
+
+*Steps:*
+Insert a new transaction using spaces as the transaction date.
+
+{code:sql}INSERT INTO Transactions
+(sender_account, receiver_account, transaction_type, amount, transaction_date)
+VALUES
+(1001, 1002, 'Transfer', 500, '   ');
+{code}
+
+*Preconditions:*
+
+* Transactions table exists.
+* Sender account {{1001}} exists.
+* Receiver account {{1002}} exists.
+
+*Test Data:*
+
+* sender_account = {{1001}}
+* receiver_account = {{1002}}
+* transaction_type = {{Transfer}}
+* amount = {{500}}
+* transaction_date = {{' '}}
+
+*Test Environment:*
+MySQL
+
+*Expected Result:*
+Transaction is rejected because spaces are not a valid date.",,Dina Ahmed,712020:bcf5c0a0-35d3-40f1-ac01-e614b8fa4b99,,,,,,,,,BTMSB-9,,,,{},,0|i0013b:,,,,,,,,,In Progress,12/Sep/26 10:52 PM
+TM_045: Verify that a transaction cannot be created with an empty transaction date.,BTMSB-105,10315,Test Case,Passed,BTMSB,Banking Transaction Management System (BTMS),software,Dina Ahmed,712020:bcf5c0a0-35d3-40f1-ac01-e614b8fa4b99,,Medium,,Dina Ahmed,712020:bcf5c0a0-35d3-40f1-ac01-e614b8fa4b99,Dina Ahmed,712020:bcf5c0a0-35d3-40f1-ac01-e614b8fa4b99,Dina Ahmed,712020:bcf5c0a0-35d3-40f1-ac01-e614b8fa4b99,31/Aug/26 3:14 PM,12/Sep/26 10:52 PM,,,,0,"
+
+*Steps:*
+Insert a new transaction with an empty transaction date.
+
+{code:sql}INSERT INTO Transactions
+(sender_account, receiver_account, transaction_type, amount, transaction_date)
+VALUES
+(1001, 1002, 'Transfer', 500, '');
+{code}
+
+*Preconditions:*
+
+* Transactions table exists.
+* Sender account {{1001}} exists.
+* Receiver account {{1002}} exists.
+
+*Test Data:*
+
+* sender_account = {{1001}}
+* receiver_account = {{1002}}
+* transaction_type = {{Transfer}}
+* amount = {{500}}
+* transaction_date = {{''}}
+
+*Test Environment:*
+MySQL
+
+*Expected Result:*
+Transaction is rejected because the transaction date must be a valid date.",,Dina Ahmed,712020:bcf5c0a0-35d3-40f1-ac01-e614b8fa4b99,,,,,,,,,BTMSB-9,,,,{},,0|i00133:,,,,,,,,,In Progress,12/Sep/26 10:52 PM
+TM_044: Verify that a transaction cannot be created with a NULL transaction date.,BTMSB-103,10313,Test Case,Passed,BTMSB,Banking Transaction Management System (BTMS),software,Dina Ahmed,712020:bcf5c0a0-35d3-40f1-ac01-e614b8fa4b99,,Medium,,Dina Ahmed,712020:bcf5c0a0-35d3-40f1-ac01-e614b8fa4b99,Dina Ahmed,712020:bcf5c0a0-35d3-40f1-ac01-e614b8fa4b99,Dina Ahmed,712020:bcf5c0a0-35d3-40f1-ac01-e614b8fa4b99,31/Aug/26 3:13 PM,12/Sep/26 10:51 PM,,,,0,"
+
+*Steps:*
+Insert a new transaction with a NULL transaction date.
+
+{code:sql}INSERT INTO Transactions
+(sender_account, receiver_account, transaction_type, amount, transaction_date)
+VALUES
+(1001, 1002, 'Transfer', 500, NULL);
+{code}
+
+*Preconditions:*
+
+* Transactions table exists.
+* Sender account {{1001}} exists.
+* Receiver account {{1002}} exists.
+
+*Test Data:*
+
+* sender_account = {{1001}}
+* receiver_account = {{1002}}
+* transaction_type = {{Transfer}}
+* amount = {{500}}
+* transaction_date = {{NULL}}
+
+*Test Environment:*
+MySQL
+
+*Expected Result:*
+Transaction is rejected because {{transaction_date}} is a mandatory field.",,Dina Ahmed,712020:bcf5c0a0-35d3-40f1-ac01-e614b8fa4b99,,,,,,,,,BTMSB-9,,,,{},,0|i0012n:,,,,,,,,,In Progress,12/Sep/26 10:51 PM
+TM_043: Verify that a transaction cannot be created with an invalid transaction type.,BTMSB-101,10311,Test Case,Passed,BTMSB,Banking Transaction Management System (BTMS),software,Dina Ahmed,712020:bcf5c0a0-35d3-40f1-ac01-e614b8fa4b99,,Medium,,Dina Ahmed,712020:bcf5c0a0-35d3-40f1-ac01-e614b8fa4b99,Dina Ahmed,712020:bcf5c0a0-35d3-40f1-ac01-e614b8fa4b99,Dina Ahmed,712020:bcf5c0a0-35d3-40f1-ac01-e614b8fa4b99,31/Aug/26 3:09 PM,12/Sep/26 10:50 PM,,,,0,"
+
+*Steps:*
+Insert a new transaction using a transaction type that is not defined in the ENUM.
+
+{code:sql}INSERT INTO Transactions
+(sender_account, receiver_account, transaction_type, amount, transaction_date)
+VALUES
+(1001, 1002, 'Refund', 500, '2026-08-31');
+{code}
+
+*Preconditions:*
+
+* Transactions table exists.
+* Sender account {{1001}} exists.
+* Receiver account {{1002}} exists.
+
+*Test Data:*
+
+* sender_account = {{1001}}
+* receiver_account = {{1002}}
+* transaction_type = {{Refund}}
+* amount = {{500}}
+* transaction_date = {{2026-08-31}}
+
+*Test Environment:*
+MySQL
+
+*Expected Result:*
+Transaction is rejected because {{Refund}} is not an allowed ENUM value.",,Dina Ahmed,712020:bcf5c0a0-35d3-40f1-ac01-e614b8fa4b99,,,,,,,,,BTMSB-9,,,,{},,0|i00127:,,,,,,,,,In Progress,12/Sep/26 10:50 PM
+TM_042: Verify that a transaction cannot be created with spaces as the transaction type.,BTMSB-100,10310,Test Case,Passed,BTMSB,Banking Transaction Management System (BTMS),software,Dina Ahmed,712020:bcf5c0a0-35d3-40f1-ac01-e614b8fa4b99,,Medium,,Dina Ahmed,712020:bcf5c0a0-35d3-40f1-ac01-e614b8fa4b99,Dina Ahmed,712020:bcf5c0a0-35d3-40f1-ac01-e614b8fa4b99,Dina Ahmed,712020:bcf5c0a0-35d3-40f1-ac01-e614b8fa4b99,31/Aug/26 3:08 PM,12/Sep/26 10:50 PM,,,,0,"
+
+*Steps:*
+Insert a new transaction with spaces as the transaction type.
+
+{code:sql}INSERT INTO Transactions
+(sender_account, receiver_account, transaction_type, amount, transaction_date)
+VALUES
+(1001, 1002, '   ', 500, '2026-08-31');
+{code}
+
+*Preconditions:*
+
+* Transactions table exists.
+* Sender account {{1001}} exists.
+* Receiver account {{1002}} exists.
+
+*Test Data:*
+
+* sender_account = {{1001}}
+* receiver_account = {{1002}}
+* transaction_type = {{' '}}
+* amount = {{500}}
+* transaction_date = {{2026-08-31}}
+
+*Test Environment:*
+MySQL
+
+*Expected Result:*
+Transaction is rejected because spaces are not a valid transaction type.",,Dina Ahmed,712020:bcf5c0a0-35d3-40f1-ac01-e614b8fa4b99,,,,,,,,,BTMSB-9,,,,{},,0|i0011z:,,,,,,,,,In Progress,12/Sep/26 10:50 PM
+TM_041: Verify that a transaction cannot be created with an empty transaction type.,BTMSB-99,10309,Test Case,Passed,BTMSB,Banking Transaction Management System (BTMS),software,Dina Ahmed,712020:bcf5c0a0-35d3-40f1-ac01-e614b8fa4b99,,Medium,,Dina Ahmed,712020:bcf5c0a0-35d3-40f1-ac01-e614b8fa4b99,Dina Ahmed,712020:bcf5c0a0-35d3-40f1-ac01-e614b8fa4b99,Dina Ahmed,712020:bcf5c0a0-35d3-40f1-ac01-e614b8fa4b99,31/Aug/26 3:07 PM,12/Sep/26 10:49 PM,,,,0,"
+
+*Steps:*
+Insert a new transaction with an empty transaction type.
+
+{code:sql}INSERT INTO Transactions
+(sender_account, receiver_account, transaction_type, amount, transaction_date)
+VALUES
+(1001, 1002, '', 500, '2026-08-31');
+{code}
+
+*Preconditions:*
+
+* Transactions table exists.
+* Sender account {{1001}} exists.
+* Receiver account {{1002}} exists.
+
+*Test Data:*
+
+* sender_account = {{1001}}
+* receiver_account = {{1002}}
+* transaction_type = {{''}}
+* amount = {{500}}
+* transaction_date = {{2026-08-31}}
+
+*Test Environment:*
+MySQL
+
+*Expected Result:*
+Transaction is rejected because the transaction type must be one of the allowed ENUM values.",,Dina Ahmed,712020:bcf5c0a0-35d3-40f1-ac01-e614b8fa4b99,,,,,,,,,BTMSB-9,,,,{},,0|i0011r:,,,,,,,,,In Progress,12/Sep/26 10:49 PM
+TM_040: Verify that a transaction cannot be created with a NULL transaction type.,BTMSB-98,10308,Test Case,Passed,BTMSB,Banking Transaction Management System (BTMS),software,Dina Ahmed,712020:bcf5c0a0-35d3-40f1-ac01-e614b8fa4b99,,Medium,,Dina Ahmed,712020:bcf5c0a0-35d3-40f1-ac01-e614b8fa4b99,Dina Ahmed,712020:bcf5c0a0-35d3-40f1-ac01-e614b8fa4b99,Dina Ahmed,712020:bcf5c0a0-35d3-40f1-ac01-e614b8fa4b99,31/Aug/26 3:07 PM,12/Sep/26 10:49 PM,,,,0,"
+
+*Steps:*
+Insert a new transaction with a NULL transaction type.
+
+{code:sql}INSERT INTO Transactions
+(sender_account, receiver_account, transaction_type, amount, transaction_date)
+VALUES
+(1001, 1002, NULL, 500, '2026-08-31');
+{code}
+
+*Preconditions:*
+
+* Transactions table exists.
+* Sender account {{1001}} exists.
+* Receiver account {{1002}} exists.
+
+*Test Data:*
+
+* sender_account = {{1001}}
+* receiver_account = {{1002}}
+* transaction_type = {{NULL}}
+* amount = {{500}}
+* transaction_date = {{2026-08-31}}
+
+*Test Environment:*
+MySQL
+
+*Expected Result:*
+Transaction is rejected because {{transaction_type}} is a mandatory field.",,Dina Ahmed,712020:bcf5c0a0-35d3-40f1-ac01-e614b8fa4b99,,,,,,,,,BTMSB-9,,,,{},,0|i0011j:,,,,,,,,,In Progress,12/Sep/26 10:49 PM
+TM_039: Verify that a Transfer transaction cannot be created with an empty receiver account.,BTMSB-95,10305,Test Case,Passed,BTMSB,Banking Transaction Management System (BTMS),software,Dina Ahmed,712020:bcf5c0a0-35d3-40f1-ac01-e614b8fa4b99,,Medium,,Dina Ahmed,712020:bcf5c0a0-35d3-40f1-ac01-e614b8fa4b99,Dina Ahmed,712020:bcf5c0a0-35d3-40f1-ac01-e614b8fa4b99,Dina Ahmed,712020:bcf5c0a0-35d3-40f1-ac01-e614b8fa4b99,31/Aug/26 3:04 PM,12/Sep/26 10:48 PM,,,,0,"
+
+*Steps:*
+Insert a new Transfer transaction using an empty value as the receiver account.
+
+{code:sql}INSERT INTO Transactions
+(sender_account, receiver_account, transaction_type, amount, transaction_date)
+VALUES
+(1001, '', 'Transfer', 500, '2026-08-31');
+{code}
+
+*Preconditions:*
+
+* Transactions table exists.
+* Sender account {{1001}} exists.
+* Sender account has sufficient balance.
+
+*Test Data:*
+
+* sender_account = {{1001}}
+* receiver_account = {{''}}
+* transaction_type = {{Transfer}}
+* amount = {{500}}
+* transaction_date = {{2026-08-31}}
+
+*Test Environment:*
+MySQL
+
+*Expected Result:*
+Transaction is rejected because receiver account must contain a valid existing account number.",,Dina Ahmed,712020:bcf5c0a0-35d3-40f1-ac01-e614b8fa4b99,,,,,,,,,BTMSB-9,,,,{},,0|i0010v:,,,,,,,,,In Progress,12/Sep/26 10:48 PM
+TM_038: Verify that a Transfer transaction cannot be created with receiver account equal to 0.,BTMSB-94,10304,Test Case,Passed,BTMSB,Banking Transaction Management System (BTMS),software,Dina Ahmed,712020:bcf5c0a0-35d3-40f1-ac01-e614b8fa4b99,,Medium,,Dina Ahmed,712020:bcf5c0a0-35d3-40f1-ac01-e614b8fa4b99,Dina Ahmed,712020:bcf5c0a0-35d3-40f1-ac01-e614b8fa4b99,Dina Ahmed,712020:bcf5c0a0-35d3-40f1-ac01-e614b8fa4b99,31/Aug/26 3:03 PM,12/Sep/26 10:47 PM,,,,0,"*Steps:*
+Insert a new Transfer transaction using {{0}} as the receiver account.
+
+{code:sql}INSERT INTO Transactions
+(sender_account, receiver_account, transaction_type, amount, transaction_date)
+VALUES
+(1001, 0, 'Transfer', 500, '2026-08-31');
+{code}
+
+*Preconditions:*
+
+* Transactions table exists.
+* Sender account {{1001}} exists.
+* Receiver account {{0}} does not exist.
+* Sender account has sufficient balance.
+
+*Test Data:*
+
+* sender_account = {{1001}}
+* receiver_account = {{0}}
+* transaction_type = {{Transfer}}
+* amount = {{500}}
+* transaction_date = {{2026-08-31}}
+
+*Test Environment:*
+MySQL
+
+*Expected Result:*
+Transaction is rejected because receiver account {{0}} does not exist in the {{Accounts}} table.",,Dina Ahmed,712020:bcf5c0a0-35d3-40f1-ac01-e614b8fa4b99,,,,,,,,,BTMSB-9,,,,{},,0|i0010n:,,,,,,,,,In Progress,12/Sep/26 10:47 PM
+TM_037: Verify that a transaction cannot be created with a negative receiver account.,BTMSB-92,10302,Test Case,Passed,BTMSB,Banking Transaction Management System (BTMS),software,Dina Ahmed,712020:bcf5c0a0-35d3-40f1-ac01-e614b8fa4b99,,Medium,,Dina Ahmed,712020:bcf5c0a0-35d3-40f1-ac01-e614b8fa4b99,Dina Ahmed,712020:bcf5c0a0-35d3-40f1-ac01-e614b8fa4b99,Dina Ahmed,712020:bcf5c0a0-35d3-40f1-ac01-e614b8fa4b99,31/Aug/26 3:02 PM,12/Sep/26 10:45 PM,,,,0,"*Steps:*
+Insert a new Transfer transaction using a negative receiver account.
+
+{code:sql}INSERT INTO Transactions
+(sender_account, receiver_account, transaction_type, amount, transaction_date)
+VALUES
+(1001, -1002, 'Transfer', 500, '2026-08-31');
+{code}
+
+*Preconditions:*
+
+* Transactions table exists.
+* Sender account {{1001}} exists.
+* Receiver account {{-1002}} does not exist.
+* Sender account has sufficient balance.
+
+*Test Data:*
+
+* sender_account = {{1001}}
+* receiver_account = {{-1002}}
+* transaction_type = {{Transfer}}
+* amount = {{500}}
+* transaction_date = {{2026-08-31}}
+
+*Test Environment:*
+MySQL
+
+*Expected Result:*
+Transaction is rejected because the receiver account does not exist in the Accounts table.",,Dina Ahmed,712020:bcf5c0a0-35d3-40f1-ac01-e614b8fa4b99,,,,,,,,,BTMSB-9,,,,{},,0|i00107:,,,,,,,,,In Progress,12/Sep/26 10:45 PM
+TM_036: Verify that a transaction cannot be created with a non-numeric receiver account,BTMSB-91,10301,Test Case,Passed,BTMSB,Banking Transaction Management System (BTMS),software,Dina Ahmed,712020:bcf5c0a0-35d3-40f1-ac01-e614b8fa4b99,,Medium,,Dina Ahmed,712020:bcf5c0a0-35d3-40f1-ac01-e614b8fa4b99,Dina Ahmed,712020:bcf5c0a0-35d3-40f1-ac01-e614b8fa4b99,Dina Ahmed,712020:bcf5c0a0-35d3-40f1-ac01-e614b8fa4b99,31/Aug/26 3:01 PM,12/Sep/26 10:45 PM,,,,0,"*Steps:*
+Insert a new Transfer transaction using a text value as the receiver account.
+
+{code:sql}INSERT INTO Transactions
+(sender_account, receiver_account, transaction_type, amount, transaction_date)
+VALUES
+(1001, 'ABC', 'Transfer', 500, '2026-08-31');
+{code}
+
+*Preconditions:*
+
+* Transactions table exists.
+* Sender account {{1001}} exists.
+* Sender account has sufficient balance.
+
+*Test Data:*
+
+* sender_account = {{1001}}
+* receiver_account = {{'ABC'}}
+* transaction_type = {{Transfer}}
+* amount = {{500}}
+* transaction_date = {{2026-08-31}}
+
+*Test Environment:*
+MySQL
+
+*Expected Result:*
+Transaction is rejected because {{receiver_account}} must contain a valid numeric account number.",,Dina Ahmed,712020:bcf5c0a0-35d3-40f1-ac01-e614b8fa4b99,,,,,,,,,BTMSB-9,,,,{},,0|i000zz:,,,,,,,,,In Progress,12/Sep/26 10:45 PM
+TM_035: Verify that a transaction cannot be created with spaces in the receiver account,BTMSB-90,10300,Test Case,Passed,BTMSB,Banking Transaction Management System (BTMS),software,Dina Ahmed,712020:bcf5c0a0-35d3-40f1-ac01-e614b8fa4b99,,Medium,,Dina Ahmed,712020:bcf5c0a0-35d3-40f1-ac01-e614b8fa4b99,Dina Ahmed,712020:bcf5c0a0-35d3-40f1-ac01-e614b8fa4b99,Dina Ahmed,712020:bcf5c0a0-35d3-40f1-ac01-e614b8fa4b99,31/Aug/26 2:59 PM,12/Sep/26 10:44 PM,,,,0,"*Steps:*
+Insert a new Transfer transaction using spaces as the receiver account.
+
+{code:sql}INSERT INTO Transactions
+(sender_account, receiver_account, transaction_type, amount, transaction_date)
+VALUES
+(1001, '   ', 'Transfer', 500, '2026-08-31');
+{code}
+
+*Preconditions:*
+
+* Transactions table exists.
+* Sender account {{1001}} exists.
+* Sender account has sufficient balance.
+* No account exists with the specified invalid receiver value.
+
+*Test Data:*
+
+* sender_account = {{1001}}
+* receiver_account = {{' '}}
+* transaction_type = {{Transfer}}
+* amount = {{500}}
+* transaction_date = {{2026-08-31}}
+
+*Test Environment:*
+MySQL
+
+*Expected Result:*
+Transaction is rejected because the receiver account must contain a valid existing account number.",,Dina Ahmed,712020:bcf5c0a0-35d3-40f1-ac01-e614b8fa4b99,,,,,,,,,BTMSB-9,,,,{},,0|i000zr:,,,,,,,,,In Progress,12/Sep/26 10:44 PM
+TM_034: Verify that a Transfer transaction cannot be created with a non-existing receiver account,BTMSB-88,10298,Test Case,Passed,BTMSB,Banking Transaction Management System (BTMS),software,Dina Ahmed,712020:bcf5c0a0-35d3-40f1-ac01-e614b8fa4b99,,Medium,,Dina Ahmed,712020:bcf5c0a0-35d3-40f1-ac01-e614b8fa4b99,Dina Ahmed,712020:bcf5c0a0-35d3-40f1-ac01-e614b8fa4b99,Dina Ahmed,712020:bcf5c0a0-35d3-40f1-ac01-e614b8fa4b99,31/Aug/26 2:58 PM,12/Sep/26 10:42 PM,,,,0,"*Steps:*
+Insert a new Transfer transaction using a receiver account that does not exist.
+
+{code:sql}INSERT INTO Transactions
+(sender_account, receiver_account, transaction_type, amount, transaction_date)
+VALUES
+(1001, 9999, 'Transfer', 500, '2026-08-31');
+{code}
+
+*Preconditions:*
+
+* Transactions table exists.
+* Sender account {{1001}} exists.
+* Receiver account {{9999}} does not exist.
+* Sender account has sufficient balance.
+
+*Test Data:*
+
+* sender_account = {{1001}}
+* receiver_account = {{9999}}
+* transaction_type = {{Transfer}}
+* amount = {{500}}
+* transaction_date = {{2026-08-31}}
+
+*Test Environment:*
+MySQL
+
+*Expected Result:*
+Transaction is rejected due to the Foreign Key constraint because receiver account {{9999}} does not exist.",,Dina Ahmed,712020:bcf5c0a0-35d3-40f1-ac01-e614b8fa4b99,,,,,,,,,BTMSB-9,,,,{},,0|i000zb:,,,,,,,,,In Progress,12/Sep/26 10:42 PM
+TM_033: Verify that a Transfer transaction cannot be created with a NULL receiver account,BTMSB-87,10297,Test Case,Failed,BTMSB,Banking Transaction Management System (BTMS),software,Dina Ahmed,712020:bcf5c0a0-35d3-40f1-ac01-e614b8fa4b99,,Medium,,Dina Ahmed,712020:bcf5c0a0-35d3-40f1-ac01-e614b8fa4b99,Dina Ahmed,712020:bcf5c0a0-35d3-40f1-ac01-e614b8fa4b99,Dina Ahmed,712020:bcf5c0a0-35d3-40f1-ac01-e614b8fa4b99,31/Aug/26 2:56 PM,12/Sep/26 10:36 PM,,,,0,"*Steps:*
+Insert a new Transfer transaction with a NULL receiver account.
+
+{code:sql}INSERT INTO Transactions
+(sender_account, receiver_account, transaction_type, amount, transaction_date)
+VALUES
+(1, NULL, 'Transfer', 500, '2026-08-31');
+{code}
+
+*Preconditions:*
+
+* Transactions table exists.
+* Sender account {{1001}} exists.
+* Sender account has sufficient balance.
+
+*Test Data:*
+
+* sender_account = {{1}}
+* receiver_account = {{NULL}}
+* transaction_type = {{Transfer}}
+* amount = {{500}}
+* transaction_date = {{2026-08-31}}
+
+*Test Environment:*
+MySQL
+
+*Expected Result:*
+Transfer transaction is rejected because a valid receiver account is required for a Transfer.",,Dina Ahmed,712020:bcf5c0a0-35d3-40f1-ac01-e614b8fa4b99,,,,,,,,,BTMSB-9,,BTMSB-147,,{},,0|i000z3:,,,,,,,,,Done,03/Oct/26 6:03 PM
+TM_032: Verify that a transaction cannot be created with spaces in the sender account,BTMSB-85,10295,Test Case,Passed,BTMSB,Banking Transaction Management System (BTMS),software,Dina Ahmed,712020:bcf5c0a0-35d3-40f1-ac01-e614b8fa4b99,,Medium,,Dina Ahmed,712020:bcf5c0a0-35d3-40f1-ac01-e614b8fa4b99,Dina Ahmed,712020:bcf5c0a0-35d3-40f1-ac01-e614b8fa4b99,Dina Ahmed,712020:bcf5c0a0-35d3-40f1-ac01-e614b8fa4b99,31/Aug/26 2:52 PM,12/Sep/26 10:32 PM,,,,0,"*Steps:*
+Insert a new transaction using spaces as the sender account.
+
+{code:sql}INSERT INTO Transactions
+(sender_account, receiver_account, transaction_type, amount, transaction_date)
+VALUES
+('   ', 1002, 'Transfer', 500, '2026-08-31');
+{code}
+
+*Preconditions:*
+
+* Transactions table exists.
+* Receiver account {{1002}} exists.
+
+*Test Data:*
+
+* sender_account = {{' '}}
+* receiver_account = {{1002}}
+* transaction_type = {{Transfer}}
+* amount = {{500}}
+* transaction_date = {{2026-08-31}}
+
+*Test Environment:*
+MySQL
+
+*Expected Result:*
+Transaction is rejected because the sender account must contain a valid existing account number.",,Dina Ahmed,712020:bcf5c0a0-35d3-40f1-ac01-e614b8fa4b99,,,,,,,,,BTMSB-9,,,,{},,0|i000yn:,,,,,,,,,In Progress,12/Sep/26 10:32 PM
+TM_031: Verify that a transaction cannot be created with spaces in the sender account,BTMSB-83,10293,Test Case,Failed,BTMSB,Banking Transaction Management System (BTMS),software,Dina Ahmed,712020:bcf5c0a0-35d3-40f1-ac01-e614b8fa4b99,,Medium,,Dina Ahmed,712020:bcf5c0a0-35d3-40f1-ac01-e614b8fa4b99,Dina Ahmed,712020:bcf5c0a0-35d3-40f1-ac01-e614b8fa4b99,Dina Ahmed,712020:bcf5c0a0-35d3-40f1-ac01-e614b8fa4b99,31/Aug/26 2:50 PM,12/Sep/26 10:22 PM,,,,0,"*Steps:*
+Insert a transaction using a sender account value containing spaces.
+
+{code:sql}INSERT INTO Transactions
+(sender_account, receiver_account, transaction_type, amount, transaction_date)
+VALUES
+(' 1 ', 2, 'Transfer', 500, '2026-08-31');
+{code}
+
+*Preconditions:*
+
+* Transactions table exists.
+* Sender account {{1001}} exists.
+* Receiver account {{1002}} exists.
+* Sender account has sufficient balance.
+
+*Test Data:*
+
+* sender_account = {{' 1 '}}
+* receiver_account = {{2}}
+* transaction_type = {{Transfer}}
+* amount = {{500}}
+* transaction_date = {{2026-08-31}}
+
+*Test Environment:*
+MySQL
+
+*Expected Result:*
+The system should reject the transaction because {{sender_account}} should contain a valid account number without spaces.",,Dina Ahmed,712020:bcf5c0a0-35d3-40f1-ac01-e614b8fa4b99,,,,,,,,,BTMSB-9,,BTMSB-146,,{},,0|i000y7:,,,,,,,,,Done,03/Oct/26 6:03 PM
+TM_030: Verify that a Transfer cannot be created when sender and receiver accounts are the same,BTMSB-82,10292,Test Case,Failed,BTMSB,Banking Transaction Management System (BTMS),software,Dina Ahmed,712020:bcf5c0a0-35d3-40f1-ac01-e614b8fa4b99,,Medium,,Dina Ahmed,712020:bcf5c0a0-35d3-40f1-ac01-e614b8fa4b99,Dina Ahmed,712020:bcf5c0a0-35d3-40f1-ac01-e614b8fa4b99,Dina Ahmed,712020:bcf5c0a0-35d3-40f1-ac01-e614b8fa4b99,31/Aug/26 2:49 PM,12/Sep/26 10:16 PM,,,,0,"*Steps:*
+Insert a Transfer transaction using the same account as sender and receiver.
+
+{code:sql}INSERT INTO Transactions
+(sender_account, receiver_account, transaction_type, amount, transaction_date)
+VALUES
+(1001, 1001, 'Transfer', 500, '2026-08-31');
+{code}
+
+*Preconditions:*
+
+* Account {{1001}} exists.
+* Account {{1001}} has sufficient balance.
+
+*Test Data:*
+
+* sender_account = {{1001}}
+* receiver_account = {{1001}}
+* transaction_type = {{Transfer}}
+* amount = {{500}}
+* transaction_date = {{2026-08-31}}
+
+*Test Environment:*
+MySQL
+
+*Expected Result:*
+Transaction is rejected because a Transfer should not be performed from an account to the same account.",,Dina Ahmed,712020:bcf5c0a0-35d3-40f1-ac01-e614b8fa4b99,,,,,,,,,BTMSB-9,,BTMSB-145,,{},,0|i000xz:,,,,,,,,,Done,03/Oct/26 6:03 PM
+TM_029: Verify that a transaction cannot be created with an invalid sender account value of zero,BTMSB-80,10290,Test Case,Passed,BTMSB,Banking Transaction Management System (BTMS),software,Dina Ahmed,712020:bcf5c0a0-35d3-40f1-ac01-e614b8fa4b99,,Medium,,Dina Ahmed,712020:bcf5c0a0-35d3-40f1-ac01-e614b8fa4b99,Dina Ahmed,712020:bcf5c0a0-35d3-40f1-ac01-e614b8fa4b99,Dina Ahmed,712020:bcf5c0a0-35d3-40f1-ac01-e614b8fa4b99,31/Aug/26 2:47 PM,12/Sep/26 10:11 PM,,,,0,"*Steps:*
+Insert a transaction using {{0}} as the sender account
+
+{code:sql}INSERT INTO Transactions
+(sender_account, receiver_account, transaction_type, amount, transaction_date)
+VALUES
+(0, 1002, 'Transfer', 500, '2026-08-31');
+{code}
+
+*Preconditions:*
+
+* Transactions table exists.
+* Sender account {{0}} does not exist.
+* Receiver account {{1002}} exists.
+
+*Test Data:*
+
+* sender_account = {{0}}
+* receiver_account = {{1002}}
+* transaction_type = {{Transfer}}
+* amount = {{500}}
+* transaction_date = {{2026-08-31}}
+
+*Test Environment:*
+MySQL
+
+*Expected Result:*
+Transaction is rejected because sender account {{0}} does not exist in the Accounts table.",,Dina Ahmed,712020:bcf5c0a0-35d3-40f1-ac01-e614b8fa4b99,,,,,,,,,BTMSB-9,,,,{},,0|i000xj:,,,,,,,,,In Progress,12/Sep/26 10:11 PM
+TM_028: Verify that a transaction cannot be created with a non-numeric sender account value,BTMSB-79,10289,Test Case,Passed,BTMSB,Banking Transaction Management System (BTMS),software,Dina Ahmed,712020:bcf5c0a0-35d3-40f1-ac01-e614b8fa4b99,,Medium,,Dina Ahmed,712020:bcf5c0a0-35d3-40f1-ac01-e614b8fa4b99,Dina Ahmed,712020:bcf5c0a0-35d3-40f1-ac01-e614b8fa4b99,Dina Ahmed,712020:bcf5c0a0-35d3-40f1-ac01-e614b8fa4b99,31/Aug/26 2:44 PM,12/Sep/26 10:10 PM,,,,0,"*Steps:*
+Insert a transaction using a text value as the sender account.
+
+{code:sql}INSERT INTO Transactions
+(sender_account, receiver_account, transaction_type, amount, transaction_date)
+VALUES
+('ABC', 1002, 'Transfer', 500, '2026-08-31');
+{code}
+
+*Preconditions:*
+
+* Transactions table exists.
+* Receiver account {{1002}} exists.
+
+*Test Data:*
+
+* sender_account = {{ABC}}
+* receiver_account = {{1002}}
+* transaction_type = {{Transfer}}
+* amount = {{500}}
+* transaction_date = {{2026-08-31}}
+
+*Test Environment:*
+MySQL
+
+*Expected Result:*
+Transaction is rejected because {{sender_account}} is defined as an {{INT}} and must contain a valid account number.",,Dina Ahmed,712020:bcf5c0a0-35d3-40f1-ac01-e614b8fa4b99,,,,,,,,,BTMSB-9,,,,{},,0|i000xb:,,,,,,,,,In Progress,12/Sep/26 10:10 PM
+TM_027: Verify that a transaction cannot be created with an empty sender account,BTMSB-77,10287,Test Case,Passed,BTMSB,Banking Transaction Management System (BTMS),software,Dina Ahmed,712020:bcf5c0a0-35d3-40f1-ac01-e614b8fa4b99,,Medium,,Dina Ahmed,712020:bcf5c0a0-35d3-40f1-ac01-e614b8fa4b99,Dina Ahmed,712020:bcf5c0a0-35d3-40f1-ac01-e614b8fa4b99,Dina Ahmed,712020:bcf5c0a0-35d3-40f1-ac01-e614b8fa4b99,31/Aug/26 2:38 PM,12/Sep/26 10:09 PM,,,,0,"*Steps:*
+Insert a transaction using an empty value for sender account.
+
+{code:sql}INSERT INTO Transactions
+(sender_account, receiver_account, transaction_type, amount, transaction_date)
+VALUES
+('', 1002, 'Transfer', 500, '2026-08-31');
+{code}
+
+*Preconditions:*
+
+* Transactions table exists.
+* Receiver account {{1002}} exists.
+
+*Test Data:*
+
+* sender_account = {{''}}
+* receiver_account = {{1002}}
+* transaction_type = {{Transfer}}
+* amount = {{500}}
+* transaction_date = {{2026-08-31}}
+
+*Test Environment:*
+MySQL
+
+*Expected Result:*
+Transaction is rejected because {{sender_account}} must contain a valid existing account number.",,Dina Ahmed,712020:bcf5c0a0-35d3-40f1-ac01-e614b8fa4b99,,,,,,,,,BTMSB-9,,,,{},,0|i000wv:,,,,,,,,,In Progress,12/Sep/26 10:09 PM
+TM_026: Verify that a transaction cannot be created with an invalid sender account value,BTMSB-76,10286,Test Case,Passed,BTMSB,Banking Transaction Management System (BTMS),software,Dina Ahmed,712020:bcf5c0a0-35d3-40f1-ac01-e614b8fa4b99,,Medium,,Dina Ahmed,712020:bcf5c0a0-35d3-40f1-ac01-e614b8fa4b99,Dina Ahmed,712020:bcf5c0a0-35d3-40f1-ac01-e614b8fa4b99,Dina Ahmed,712020:bcf5c0a0-35d3-40f1-ac01-e614b8fa4b99,31/Aug/26 2:36 PM,12/Sep/26 10:09 PM,,,,0,"*Steps:*
+Insert a new transaction using an invalid sender account value.
+
+{code:sql}INSERT INTO Transactions
+(sender_account, receiver_account, transaction_type, amount, transaction_date)
+VALUES
+(-1, 1002, 'Transfer', 500, '2026-08-31');
+{code}
+
+*Preconditions:*
+
+* Transactions table exists.
+* Receiver account {{1002}} exists.
+* Sender account {{-1}} does not exist.
+
+*Test Data:*
+
+* sender_account = -1
+* receiver_account = 1002
+* transaction_type = Transfer
+* amount = 500
+* transaction_date = 2026-08-31
+
+*Test Environment:*
+MySQL
+
+*Expected Result:*
+Transaction is rejected because the sender account does not exist in the {{Accounts}} table.",,Dina Ahmed,712020:bcf5c0a0-35d3-40f1-ac01-e614b8fa4b99,,,,,,,,,BTMSB-9,,,,{},,0|i000wn:,,,,,,,,,In Progress,12/Sep/26 10:09 PM
+TM_025: Verify that a transaction cannot be created with a non-existing sender account,BTMSB-74,10284,Test Case,Passed,BTMSB,Banking Transaction Management System (BTMS),software,Dina Ahmed,712020:bcf5c0a0-35d3-40f1-ac01-e614b8fa4b99,,Medium,,Dina Ahmed,712020:bcf5c0a0-35d3-40f1-ac01-e614b8fa4b99,Dina Ahmed,712020:bcf5c0a0-35d3-40f1-ac01-e614b8fa4b99,Dina Ahmed,712020:bcf5c0a0-35d3-40f1-ac01-e614b8fa4b99,31/Aug/26 2:35 PM,12/Sep/26 8:41 PM,,,,0,"*Steps:*
+Insert a new transaction using a sender account that does not exist.
+
+{code:sql}INSERT INTO Transactions
+(sender_account, receiver_account, transaction_type, amount, transaction_date)
+VALUES
+(9999, 1002, 'Transfer', 500, '2026-08-31');
+{code}
+
+*Preconditions:*
+
+* Transactions table exists.
+* Sender account {{9999}} does not exist.
+* Receiver account {{1002}} exists.
+
+*Test Data:*
+
+* sender_account = 9999
+* receiver_account = 1002
+* transaction_type = Transfer
+* amount = 500
+* transaction_date = 2026-08-31
+
+*Test Environment:*
+MySQL
+
+*Expected Result:*
+Transaction is rejected due to the Foreign Key constraint because {{sender_account = 9999}} does not exist in the {{Accounts}} table.",,Dina Ahmed,712020:bcf5c0a0-35d3-40f1-ac01-e614b8fa4b99,,,,,,,,,BTMSB-9,,,,{},,0|i000w7:,,,,,,,,,In Progress,12/Sep/26 8:41 PM
+TM_024: Verify that a transaction cannot be created with a NULL sender account,BTMSB-73,10283,Test Case,Passed,BTMSB,Banking Transaction Management System (BTMS),software,Dina Ahmed,712020:bcf5c0a0-35d3-40f1-ac01-e614b8fa4b99,,Medium,,Dina Ahmed,712020:bcf5c0a0-35d3-40f1-ac01-e614b8fa4b99,Dina Ahmed,712020:bcf5c0a0-35d3-40f1-ac01-e614b8fa4b99,Dina Ahmed,712020:bcf5c0a0-35d3-40f1-ac01-e614b8fa4b99,31/Aug/26 2:33 PM,12/Sep/26 8:40 PM,,,,0,"*Steps:*
+Insert a new transaction with a NULL sender account.
+
+{code:sql}INSERT INTO Transactions
+(sender_account, receiver_account, transaction_type, amount, transaction_date)
+VALUES
+(NULL, 1002, 'Transfer', 500, '2026-08-31');
+{code}
+
+*Preconditions:*
+
+* Transactions table exists.
+* Receiver account {{1002}} exists.
+
+*Test Data:*
+
+* sender_account = NULL
+* receiver_account = 1002
+* transaction_type = Transfer
+* amount = 500
+* transaction_date = 2026-08-31
+
+*Test Environment:*
+MySQL
+
+*Expected Result:*
+Transaction is rejected because {{sender_account}} is a mandatory field ({{NOT NULL}}).",,Dina Ahmed,712020:bcf5c0a0-35d3-40f1-ac01-e614b8fa4b99,,,,,,,,,BTMSB-9,,,,{},,0|i000vz:,,,,,,,,,In Progress,12/Sep/26 8:40 PM
+TM_023: Verify that a transaction cannot be created without an amount,BTMSB-71,10281,Test Case,Passed,BTMSB,Banking Transaction Management System (BTMS),software,Dina Ahmed,712020:bcf5c0a0-35d3-40f1-ac01-e614b8fa4b99,,Medium,,Dina Ahmed,712020:bcf5c0a0-35d3-40f1-ac01-e614b8fa4b99,Dina Ahmed,712020:bcf5c0a0-35d3-40f1-ac01-e614b8fa4b99,Dina Ahmed,712020:bcf5c0a0-35d3-40f1-ac01-e614b8fa4b99,31/Aug/26 2:24 PM,12/Sep/26 8:39 PM,,,,0,"*Steps:*
+Insert a transaction with a NULL amount.
+
+{code:sql}INSERT INTO Transactions
+(sender_account, receiver_account, transaction_type, amount, transaction_date)
+VALUES
+(1001, 1002, 'Transfer', NULL, '2026-08-31');
+{code}
+
+*Preconditions:*
+
+* Transactions table exists.
+* Sender account {{1001}} exists.
+* Receiver account {{1002}} exists.
+
+*Test Data:*
+
+* sender_account = {{1001}}
+* receiver_account = {{1002}}
+* transaction_type = {{Transfer}}
+* amount = {{NULL}}
+* transaction_date = {{2026-08-31}}
+
+*Test Environment:*
+MySQL
+
+*Expected Result:*
+Transaction is rejected because amount is mandatory and must be greater than zero.",,Dina Ahmed,712020:bcf5c0a0-35d3-40f1-ac01-e614b8fa4b99,,,,,,,,,BTMSB-9,,,,{},,0|i000vj:,,,,,,,,,In Progress,12/Sep/26 8:39 PM
+TM_022: Verify that a transaction cannot be created without a transaction type = NULL,BTMSB-70,10280,Test Case,Passed,BTMSB,Banking Transaction Management System (BTMS),software,Dina Ahmed,712020:bcf5c0a0-35d3-40f1-ac01-e614b8fa4b99,,Medium,,Dina Ahmed,712020:bcf5c0a0-35d3-40f1-ac01-e614b8fa4b99,Dina Ahmed,712020:bcf5c0a0-35d3-40f1-ac01-e614b8fa4b99,Dina Ahmed,712020:bcf5c0a0-35d3-40f1-ac01-e614b8fa4b99,31/Aug/26 2:18 PM,12/Sep/26 8:37 PM,,,,0,"*Steps:*
+Insert a transaction with a NULL transaction type.
+
+{code:sql}INSERT INTO Transactions
+(sender_account, receiver_account, transaction_type, amount, transaction_date)
+VALUES
+(1001, 1002, NULL, 500, '2026-08-31');
+{code}
+
+*Preconditions:*
+
+* Transactions table exists.
+* Sender account {{1001}} exists.
+* Receiver account {{1002}} exists.
+
+*Test Data:*
+
+* sender_account = {{1001}}
+* receiver_account = {{1002}}
+* transaction_type = {{NULL}}
+* amount = {{500}}
+* transaction_date = {{2026-08-31}}
+
+*Test Environment:*
+MySQL
+
+*Expected Result:*
+Transaction is rejected because {{transaction_type}} is mandatory.",,Dina Ahmed,712020:bcf5c0a0-35d3-40f1-ac01-e614b8fa4b99,,,,,,,,,BTMSB-9,,,,{},,0|i000vb:,,,,,,,,,In Progress,12/Sep/26 8:37 PM
+TM_021: Verify that a transaction cannot be created with a negative amount,BTMSB-68,10278,Test Case,Passed,BTMSB,Banking Transaction Management System (BTMS),software,Dina Ahmed,712020:bcf5c0a0-35d3-40f1-ac01-e614b8fa4b99,,Medium,,Dina Ahmed,712020:bcf5c0a0-35d3-40f1-ac01-e614b8fa4b99,Dina Ahmed,712020:bcf5c0a0-35d3-40f1-ac01-e614b8fa4b99,Dina Ahmed,712020:bcf5c0a0-35d3-40f1-ac01-e614b8fa4b99,31/Aug/26 2:15 PM,12/Sep/26 8:36 PM,,,,0,"*Steps:*
+Insert a transaction with a negative amount.
+
+{code:sql}INSERT INTO Transactions
+(sender_account, receiver_account, transaction_type, amount, transaction_date)
+VALUES
+(1001, 1002, 'Transfer', -500, '2026-08-31');
+{code}
+
+*Preconditions:*
+
+* Transactions table exists.
+* Sender account {{1001}} exists.
+* Receiver account {{1002}} exists.
+
+*Test Data:*
+
+* sender_account = {{1001}}
+* receiver_account = {{1002}}
+* transaction_type = {{Transfer}}
+* amount = {{-500}}
+* transaction_date = {{2026-08-31}}
+
+*Test Environment:*
+MySQL
+
+*Expected Result:*
+Transaction is rejected because the amount must be greater than zero.",,Dina Ahmed,712020:bcf5c0a0-35d3-40f1-ac01-e614b8fa4b99,,,,,,,,,BTMSB-9,,,,{},,0|i000uv:,,,,,,,,,In Progress,12/Sep/26 8:36 PM
+TM_020: Verify that a transaction cannot be created with an amount equal to zero,BTMSB-67,10277,Test Case,Passed,BTMSB,Banking Transaction Management System (BTMS),software,Dina Ahmed,712020:bcf5c0a0-35d3-40f1-ac01-e614b8fa4b99,,Medium,,Dina Ahmed,712020:bcf5c0a0-35d3-40f1-ac01-e614b8fa4b99,Dina Ahmed,712020:bcf5c0a0-35d3-40f1-ac01-e614b8fa4b99,Dina Ahmed,712020:bcf5c0a0-35d3-40f1-ac01-e614b8fa4b99,31/Aug/26 2:12 PM,12/Sep/26 8:35 PM,,,,0,"*Steps:*
+Insert a transaction with amount equal to zero.
+
+{code:sql}INSERT INTO Transactions
+(sender_account, receiver_account, transaction_type, amount, transaction_date)
+VALUES
+(1001, 1002, 'Transfer', 0, '2026-08-31');
+{code}
+
+*Preconditions:*
+
+* Transactions table exists.
+* Sender account {{1001}} exists.
+* Receiver account {{1002}} exists.
+
+*Test Data:*
+
+* sender_account = {{1001}}
+* receiver_account = {{1002}}
+* transaction_type = {{Transfer}}
+* amount = {{0}}
+* transaction_date = {{2026-08-31}}
+
+*Test Environment:*
+MySQL
+
+*Expected Result:*
+Transaction is rejected because the amount must be greater than zero.",,Dina Ahmed,712020:bcf5c0a0-35d3-40f1-ac01-e614b8fa4b99,,,,,,,,,BTMSB-9,,,,{},,0|i000un:,,,,,,,,,In Progress,12/Sep/26 8:35 PM
+TM_019: Verify that a transfer exceeding the daily transfer limit is rejected,BTMSB-64,10274,Test Case,Failed,BTMSB,Banking Transaction Management System (BTMS),software,Dina Ahmed,712020:bcf5c0a0-35d3-40f1-ac01-e614b8fa4b99,,Medium,,Dina Ahmed,712020:bcf5c0a0-35d3-40f1-ac01-e614b8fa4b99,Dina Ahmed,712020:bcf5c0a0-35d3-40f1-ac01-e614b8fa4b99,Dina Ahmed,712020:bcf5c0a0-35d3-40f1-ac01-e614b8fa4b99,31/Aug/26 2:04 PM,12/Sep/26 8:34 PM,,,,0,"*Steps:*
+Insert a Transfer transaction that causes the daily transfer limit to be exceeded.
+
+{code:sql}INSERT INTO Transactions
+(sender_account, receiver_account, transaction_type, amount, transaction_date)
+VALUES
+(1, 2, 'Transfer', 400001, '2026-08-31');
+{code}
+
+*Preconditions:*
+
+* Daily transfer limit = {{400000}}.
+* Sender account {{1}} exists.
+* Receiver account {{2}} exists.
+* Sender has sufficient balance.
+
+*Test Data:*
+
+* sender_account = {{1}}
+* receiver_account = {{2}}
+* transaction_type = {{Transfer}}
+* amount = {{400001}}
+* transaction_date = {{2026-08-31}}
+
+*Test Environment:*
+MySQL
+
+*Expected Result:*
+
+* Transfer is rejected by the daily transfer limit trigger.
+* Sender balance remains unchanged.
+* Receiver balance remains unchanged.
+* No successful transfer is recorded.",,Dina Ahmed,712020:bcf5c0a0-35d3-40f1-ac01-e614b8fa4b99,,,,,,,,,BTMSB-9,,BTMSB-144,,{},,0|i000tz:,,,,,,,,,Done,03/Oct/26 6:03 PM
+TM_018: Verify that a customer can transfer an amount within the daily transfer limit,BTMSB-62,10272,Test Case,Passed,BTMSB,Banking Transaction Management System (BTMS),software,Dina Ahmed,712020:bcf5c0a0-35d3-40f1-ac01-e614b8fa4b99,,Medium,,Dina Ahmed,712020:bcf5c0a0-35d3-40f1-ac01-e614b8fa4b99,Dina Ahmed,712020:bcf5c0a0-35d3-40f1-ac01-e614b8fa4b99,Dina Ahmed,712020:bcf5c0a0-35d3-40f1-ac01-e614b8fa4b99,31/Aug/26 2:02 PM,12/Sep/26 8:24 PM,,,,0,"*Steps:*
+Insert a Transfer transaction within the daily transfer limit.
+
+{code:sql}INSERT INTO Transactions
+(sender_account, receiver_account, transaction_type, amount, transaction_date)
+VALUES
+(1001, 1002, 'Transfer', 35000, '2026-08-31');
+{code}
+
+*Preconditions:*
+
+* Daily transfer limit = {{40000}}.
+* Sender account {{1001}} exists.
+* Receiver account {{1002}} exists.
+* Sender has sufficient balance.
+
+*Test Data:*
+
+* sender_account = {{1001}}
+* receiver_account = {{1002}}
+* transaction_type = {{Transfer}}
+* amount = {{35000}}
+* transaction_date = {{2026-08-31}}
+
+*Test Environment:*
+MySQL
+
+*Expected Result:*
+Transfer is created successfully because the total daily transfer amount does not exceed the configured daily limit.",,Dina Ahmed,712020:bcf5c0a0-35d3-40f1-ac01-e614b8fa4b99,,,,,,,,,BTMSB-9,,,,{},,0|i000tj:,,,,,,,,,In Progress,12/Sep/26 8:24 PM
+TM_017: Verify that a failed transaction does not affect the account balance,BTMSB-61,10271,Test Case,Passed,BTMSB,Banking Transaction Management System (BTMS),software,Dina Ahmed,712020:bcf5c0a0-35d3-40f1-ac01-e614b8fa4b99,,Medium,,Dina Ahmed,712020:bcf5c0a0-35d3-40f1-ac01-e614b8fa4b99,Dina Ahmed,712020:bcf5c0a0-35d3-40f1-ac01-e614b8fa4b99,Dina Ahmed,712020:bcf5c0a0-35d3-40f1-ac01-e614b8fa4b99,31/Aug/26 2:00 PM,12/Sep/26 8:24 PM,,,,0,"*Steps:*
+Attempt to create a Withdrawal transaction exceeding the available balance.
+
+{code:sql}INSERT INTO Transactions
+(sender_account, receiver_account, transaction_type, amount, transaction_date)
+VALUES
+(1001, NULL, 'Withdrawal', 1500, '2026-08-31');
+{code}
+
+Verify the account balance:
+
+{code:sql}SELECT account_number, balance
+FROM Accounts
+WHERE account_number = 1001;
+{code}
+
+*Preconditions:*
+
+* Account {{1001}} exists.
+* Current balance = {{1000}}.
+
+*Test Data:*
+
+* sender_account = {{1001}}
+* receiver_account = {{NULL}}
+* transaction_type = {{Withdrawal}}
+* amount = {{1500}}
+* transaction_date = {{2026-08-31}}
+
+*Test Environment:*
+MySQL
+
+*Expected Result:*
+
+* Transaction fails.
+* Account balance remains {{1000}}.
+* No amount is deducted from the account.",,Dina Ahmed,712020:bcf5c0a0-35d3-40f1-ac01-e614b8fa4b99,,,,,,,,,BTMSB-9,,,,{},,0|i000tb:,,,,,,,,,In Progress,12/Sep/26 8:24 PM
+TM_016: Verify that a successful Transfer updates both sender and receiver balances atomically,BTMSB-60,10270,Test Case,Failed,BTMSB,Banking Transaction Management System (BTMS),software,Dina Ahmed,712020:bcf5c0a0-35d3-40f1-ac01-e614b8fa4b99,,Medium,,Dina Ahmed,712020:bcf5c0a0-35d3-40f1-ac01-e614b8fa4b99,Dina Ahmed,712020:bcf5c0a0-35d3-40f1-ac01-e614b8fa4b99,Dina Ahmed,712020:bcf5c0a0-35d3-40f1-ac01-e614b8fa4b99,31/Aug/26 1:58 PM,12/Sep/26 8:23 PM,03/Oct/26 6:04 PM,,,0,"*Steps:*
+Insert a valid Transfer transaction.
+
+{code:sql}INSERT INTO Transactions
+(sender_account, receiver_account, transaction_type, amount, transaction_date)
+VALUES
+(1, 2, 'Transfer', 500, '2026-08-31');
+{code}
+
+Verify both account balances:
+
+{code:sql}SELECT account_number, balance
+FROM Accounts
+WHERE account_number IN (1, 2);
+{code}
+
+*Preconditions:*
+
+* Sender account {{1}} exists with balance {{1000}}.
+* Receiver account {{2}} exists with balance {{2000}}.
+* Sender has sufficient balance.
+
+*Test Data:*
+
+* sender_account = {{1}}
+* receiver_account = {{2}}
+* transaction_type = {{Transfer}}
+* amount = {{500}}
+* transaction_date = {{2026-08-31}}
+
+*Test Environment:*
+MySQL
+
+*Expected Result:*
+
+* Transfer is created successfully.
+* Sender balance changes from {{1000}} to {{500}}.
+* Receiver balance changes from {{2000}} to {{2500}}.
+* Both balance updates occur as one atomic operation.",,Dina Ahmed,712020:bcf5c0a0-35d3-40f1-ac01-e614b8fa4b99,,,,,,,,,BTMSB-9,BTMSB-137,,,{},,0|i000t3:,,,,,,,,,Done,03/Oct/26 6:03 PM
+TM_015: Verify that the account balance is updated automatically after a successful Withdrawal transaction,BTMSB-59,10269,Test Case,Failed,BTMSB,Banking Transaction Management System (BTMS),software,Dina Ahmed,712020:bcf5c0a0-35d3-40f1-ac01-e614b8fa4b99,,Medium,,Dina Ahmed,712020:bcf5c0a0-35d3-40f1-ac01-e614b8fa4b99,Dina Ahmed,712020:bcf5c0a0-35d3-40f1-ac01-e614b8fa4b99,Dina Ahmed,712020:bcf5c0a0-35d3-40f1-ac01-e614b8fa4b99,31/Aug/26 1:55 PM,12/Sep/26 8:20 PM,,,,0,"*Steps:*
+Insert a valid Withdrawal transaction.
+
+{code:sql}INSERT INTO Transactions
+(sender_account, receiver_account, transaction_type, amount, transaction_date)
+VALUES
+(1, NULL, 'Withdrawal', 500, '2026-08-31');
+{code}
+
+Verify the account balance:
+
+{code:sql}SELECT account_number, balance
+FROM Accounts
+WHERE account_number = 1;
+{code}
+
+*Preconditions:*
+
+* Account {{1}} exists.
+* Current balance = {{1000}}.
+* Account has sufficient balance.
+
+*Test Data:*
+
+* sender_account = {{1}}
+* receiver_account = {{NULL}}
+* transaction_type = {{Withdrawal}}
+* amount = {{500}}
+* transaction_date = {{2026-08-31}}
+
+*Test Environment:*
+MySQL
+
+*Expected Result:*
+Transaction is created successfully and the account balance is automatically updated from {{1000}} to {{500}}.",,Dina Ahmed,712020:bcf5c0a0-35d3-40f1-ac01-e614b8fa4b99,,,,,,,,,BTMSB-9,BTMSB-139,,,{},,0|i000sv:,,,,,,,,,Done,03/Oct/26 6:03 PM
+TM_014: Verify that the account balance is updated automatically after a successful Deposit transaction,BTMSB-58,10268,Test Case,Failed,BTMSB,Banking Transaction Management System (BTMS),software,Dina Ahmed,712020:bcf5c0a0-35d3-40f1-ac01-e614b8fa4b99,,Medium,,Dina Ahmed,712020:bcf5c0a0-35d3-40f1-ac01-e614b8fa4b99,Dina Ahmed,712020:bcf5c0a0-35d3-40f1-ac01-e614b8fa4b99,Dina Ahmed,712020:bcf5c0a0-35d3-40f1-ac01-e614b8fa4b99,31/Aug/26 1:54 PM,12/Sep/26 8:18 PM,,,,0,"*Steps:*
+Insert a valid Deposit transaction.
+
+{code:sql}INSERT INTO Transactions
+(sender_account, receiver_account, transaction_type, amount, transaction_date)
+VALUES
+(1, NULL, 'Deposit', 500, '2026-08-31');
+{code}
+
+Verify the account balance:
+
+{code:sql}SELECT account_number, balance
+FROM Accounts
+WHERE account_number = 1;
+{code}
+
+*Preconditions:*
+
+* Account {{1}} exists.
+* Current balance = {{1000}}.
+
+*Test Data:*
+
+* sender_account = {{1}}
+* receiver_account = {{NULL}}
+* transaction_type = {{Deposit}}
+* amount = {{500}}
+* transaction_date = {{2026-08-31}}
+
+*Test Environment:*
+MySQL
+
+*Expected Result:*
+Transaction is created successfully and the account balance is automatically updated from {{1000}} to {{1500}}.",,Dina Ahmed,712020:bcf5c0a0-35d3-40f1-ac01-e614b8fa4b99,,,,,,,,,BTMSB-9,BTMSB-140,,,{},,0|i000sn:,,,,,,,,,Done,03/Oct/26 6:03 PM
+TM_013: Verify that a customer cannot transfer an amount greater than the available balance,BTMSB-57,10267,Test Case,Failed,BTMSB,Banking Transaction Management System (BTMS),software,Dina Ahmed,712020:bcf5c0a0-35d3-40f1-ac01-e614b8fa4b99,,Medium,,Dina Ahmed,712020:bcf5c0a0-35d3-40f1-ac01-e614b8fa4b99,Dina Ahmed,712020:bcf5c0a0-35d3-40f1-ac01-e614b8fa4b99,Dina Ahmed,712020:bcf5c0a0-35d3-40f1-ac01-e614b8fa4b99,31/Aug/26 1:52 PM,12/Sep/26 8:14 PM,,,,0,"*Steps:*
+Insert a Transfer transaction with an amount greater than the sender account balance.
+
+* INSERT INTO Transactions
+(sender_account, receiver_account, transaction_type, amount, transaction_date)
+VALUES
+(1001, 1002, 'Transfer', 1500, '2026-08-31');
+
+*Preconditions:*
+
+* Transactions table exists.
+* Sender account {{1001}} exists.
+* Receiver account {{1002}} exists.
+* Sender account balance is {{1000}}.
+
+*Test Data:*
+
+* sender_account = {{1001}}
+* receiver_account = {{1002}}
+* transaction_type = {{Transfer}}
+* amount = {{1500}}
+* transaction_date = {{2026-08-31}}
+
+*Test Environment:*
+MySQL
+
+*Expected Result:*
+Transfer transaction is rejected because the transfer amount exceeds the available balance, and both account balances remain unchanged.",,Dina Ahmed,712020:bcf5c0a0-35d3-40f1-ac01-e614b8fa4b99,,,,,,,,,BTMSB-9,,BTMSB-142,BTMSB-143,{},,0|i000sf:,,,,,,,,,Done,03/Oct/26 6:03 PM
+TM_012: Verify that a customer cannot withdraw an amount greater than the available balance,BTMSB-56,10266,Test Case,Failed,BTMSB,Banking Transaction Management System (BTMS),software,Dina Ahmed,712020:bcf5c0a0-35d3-40f1-ac01-e614b8fa4b99,,Medium,,Dina Ahmed,712020:bcf5c0a0-35d3-40f1-ac01-e614b8fa4b99,Dina Ahmed,712020:bcf5c0a0-35d3-40f1-ac01-e614b8fa4b99,Dina Ahmed,712020:bcf5c0a0-35d3-40f1-ac01-e614b8fa4b99,31/Aug/26 1:49 PM,12/Sep/26 8:05 PM,,,,0,"*Steps:*
+Insert a Withdrawal transaction with an amount greater than the sender account balance.
+
+* INSERT INTO Transactions
+(sender_account, receiver_account, transaction_type, amount, transaction_date)
+VALUES
+(1, NULL, 'Withdrawal', 1500, '2026-08-31');
+
+*Preconditions:*
+
+* Transactions table exists.
+* Sender account {{1}} exists.
+* Sender account balance is {{1000}}.
+
+*Test Data:*
+
+* sender_account = {{1}}
+* receiver_account = {{NULL}}
+* transaction_type = {{Withdrawal}}
+* amount = {{1500}}
+* transaction_date = {{2026-08-31}}
+
+*Test Environment:*
+MySQL
+
+*Expected Result:*
+Withdrawal transaction is rejected because the withdrawal amount exceeds the available balance, and the account balance remains unchanged.",,Dina Ahmed,712020:bcf5c0a0-35d3-40f1-ac01-e614b8fa4b99,,,,,,,,,BTMSB-9,,BTMSB-141,,{},,0|i000s7:,,,,,,,,,Done,03/Oct/26 6:03 PM
+TM_011: Verify that a transaction can be created with a valid transaction date,BTMSB-54,10264,Test Case,Passed,BTMSB,Banking Transaction Management System (BTMS),software,Dina Ahmed,712020:bcf5c0a0-35d3-40f1-ac01-e614b8fa4b99,,Medium,,Dina Ahmed,712020:bcf5c0a0-35d3-40f1-ac01-e614b8fa4b99,Dina Ahmed,712020:bcf5c0a0-35d3-40f1-ac01-e614b8fa4b99,Dina Ahmed,712020:bcf5c0a0-35d3-40f1-ac01-e614b8fa4b99,31/Aug/26 1:43 PM,12/Sep/26 7:23 PM,,,,0,"*Steps:*
+Insert a new transaction using a valid transaction date.
+
+* INSERT INTO Transactions
+(sender_account, receiver_account, transaction_type, amount, transaction_date)
+VALUES
+(1001, 1002, 'Transfer', 500, '2026-08-31');
+
+*Preconditions:*
+
+* Transactions table exists.
+* Sender account {{1001}} exists.
+* Receiver account {{1002}} exists.
+* Sender account has sufficient balance.
+
+*Test Data:*
+
+* sender_account = {{1001}}
+* receiver_account = {{1002}}
+* transaction_type = {{Transfer}}
+* amount = {{500}}
+* transaction_date = {{2026-08-31}} → Valid date
+
+*Test Environment:*
+MySQL
+
+*Expected Result:*
+Transaction record is created successfully with the specified valid transaction date.",,Dina Ahmed,712020:bcf5c0a0-35d3-40f1-ac01-e614b8fa4b99,,,,,,,,,BTMSB-9,,,,{},,0|i000rr:,,,,,,,,,In Progress,12/Sep/26 7:23 PM
+TM_010: Verify that a transaction can be created with a valid positive amount,BTMSB-53,10263,Test Case,Passed,BTMSB,Banking Transaction Management System (BTMS),software,Dina Ahmed,712020:bcf5c0a0-35d3-40f1-ac01-e614b8fa4b99,,Medium,,Dina Ahmed,712020:bcf5c0a0-35d3-40f1-ac01-e614b8fa4b99,Dina Ahmed,712020:bcf5c0a0-35d3-40f1-ac01-e614b8fa4b99,Dina Ahmed,712020:bcf5c0a0-35d3-40f1-ac01-e614b8fa4b99,31/Aug/26 1:39 PM,12/Sep/26 7:23 PM,,,,0,"*Steps:*
+Insert a new transaction using a positive amount greater than zero.
+
+* INSERT INTO Transactions
+(sender_account, receiver_account, transaction_type, amount, transaction_date)
+VALUES
+(1, 2, 'Transfer', 500, '2026-08-31');
+
+*Preconditions:*
+
+* Transactions table exists.
+* Sender account {{1}} exists.
+* Receiver account {{2}} exists.
+* Sender account has sufficient balance.
+
+*Test Data:*
+
+* sender_account = {{1}}
+* receiver_account = {{2}}
+* transaction_type = {{Transfer}}
+* amount = {{500}} → Positive value
+* transaction_date = {{2026-08-31}}
+
+*Test Environment:*
+MySQL
+
+*Expected Result:*
+Transaction record is created successfully because the amount is greater than zero.",,Dina Ahmed,712020:bcf5c0a0-35d3-40f1-ac01-e614b8fa4b99,,,,,,,,,BTMSB-9,,,,{},,0|i000rj:,,,,,,,,,In Progress,12/Sep/26 7:23 PM
+TM_009: Verify that a Deposit transaction can be created with a NULL receiver account,BTMSB-51,10261,Test Case,Failed,BTMSB,Banking Transaction Management System (BTMS),software,Dina Ahmed,712020:bcf5c0a0-35d3-40f1-ac01-e614b8fa4b99,,Medium,,Dina Ahmed,712020:bcf5c0a0-35d3-40f1-ac01-e614b8fa4b99,Dina Ahmed,712020:bcf5c0a0-35d3-40f1-ac01-e614b8fa4b99,Dina Ahmed,712020:bcf5c0a0-35d3-40f1-ac01-e614b8fa4b99,31/Aug/26 1:38 PM,12/Sep/26 7:21 PM,,,,0,"
+
+*Steps:*
+Insert a new Deposit transaction with a NULL receiver account.
+
+* INSERT INTO Transactions
+(sender_account, receiver_account, transaction_type, amount, transaction_date)
+VALUES
+(1001, NULL, 'Deposit', 500, '2026-08-31');
+
+
+
+* *Preconditions:*
+* Transactions table exists.
+* Sender account {{1}} exists.
+* Deposit transactions allow a NULL receiver account.
+
+*Test Data:*
+
+* sender_account = {{1}}
+* receiver_account = {{NULL}}
+* transaction_type = {{Deposit}}
+* amount = {{500}}
+* transaction_date = {{2026-08-31}}
+
+*Test Environment:*
+MySQL
+
+*Expected Result:*
+Deposit transaction is created successfully with {{receiver_account}} set to NULL.",,Dina Ahmed,712020:bcf5c0a0-35d3-40f1-ac01-e614b8fa4b99,,,,,,,,,BTMSB-9,,BTMSB-140,,{},,0|i000r3:,,,,,,,,,Done,03/Oct/26 6:03 PM
+TM_008: Verify that a Withdrawal transaction can be created with a NULL receiver account,BTMSB-50,10260,Test Case,Failed,BTMSB,Banking Transaction Management System (BTMS),software,Dina Ahmed,712020:bcf5c0a0-35d3-40f1-ac01-e614b8fa4b99,,Medium,,Dina Ahmed,712020:bcf5c0a0-35d3-40f1-ac01-e614b8fa4b99,Dina Ahmed,712020:bcf5c0a0-35d3-40f1-ac01-e614b8fa4b99,Dina Ahmed,712020:bcf5c0a0-35d3-40f1-ac01-e614b8fa4b99,31/Aug/26 1:36 PM,12/Sep/26 7:06 PM,,,,0,"*Steps:*
+Insert a new Withdrawal transaction with a NULL receiver account.
+
+* INSERT INTO Transactions
+(sender_account, receiver_account, transaction_type, amount, transaction_date)
+VALUES
+(1001, NULL, 'Withdrawal', 500, '2026-08-31');
+
+*Preconditions:*
+
+* Transactions table exists.
+* Sender account {{1001}} exists.
+* Sender account has sufficient balance.
+* Withdrawal transactions allow a NULL receiver account.
+
+*Test Data:*
+
+* sender_account = {{1001}}
+* receiver_account = {{NULL}}
+* transaction_type = {{Withdrawal}}
+* amount = {{500}}
+* transaction_date = {{2026-08-31}}
+
+*Test Environment:*
+MySQL
+
+*Expected Result:*
+Withdrawal transaction is created successfully with {{receiver_account}} set to NULL.",,Dina Ahmed,712020:bcf5c0a0-35d3-40f1-ac01-e614b8fa4b99,,,,,,,,,BTMSB-9,,BTMSB-139,,{},,0|i000qv:,,,,,,,,,Done,03/Oct/26 6:03 PM
+TM_007: Verify that a transaction can be created with a valid receiver account,BTMSB-49,10259,Test Case,Passed,BTMSB,Banking Transaction Management System (BTMS),software,Dina Ahmed,712020:bcf5c0a0-35d3-40f1-ac01-e614b8fa4b99,,Medium,,Dina Ahmed,712020:bcf5c0a0-35d3-40f1-ac01-e614b8fa4b99,Dina Ahmed,712020:bcf5c0a0-35d3-40f1-ac01-e614b8fa4b99,Dina Ahmed,712020:bcf5c0a0-35d3-40f1-ac01-e614b8fa4b99,31/Aug/26 1:34 PM,12/Sep/26 6:58 PM,,,,0,"*Steps:*
+Insert a new Transfer transaction using a valid existing receiver account.
+
+* INSERT INTO Transactions
+(sender_account, receiver_account, transaction_type, amount, transaction_date)
+VALUES
+(1001, 1002, 'Transfer', 500, '2026-08-31');
+
+*Preconditions:*
+
+* Transactions table exists.
+* Sender account {{1001}} exists.
+* Receiver account {{1002}} exists in the Accounts table.
+* Sender account has sufficient balance.
+
+*Test Data:*
+
+* sender_account = {{1001}}
+* receiver_account = {{1002}} → Valid existing account
+* transaction_type = {{Transfer}}
+* amount = {{500}}
+* transaction_date = {{2026-08-31}}
+
+*Test Environment:*
+MySQL
+
+*Expected Result:*
+Transaction record is created successfully because the receiver account exists and is valid.",,Dina Ahmed,712020:bcf5c0a0-35d3-40f1-ac01-e614b8fa4b99,,,,,,,,,BTMSB-9,,,,{},,0|i000qn:,,,,,,,,,In Progress,12/Sep/26 6:58 PM
+TM_006: Verify that a transaction can be created with a valid sender account,BTMSB-48,10258,Test Case,Passed,BTMSB,Banking Transaction Management System (BTMS),software,Dina Ahmed,712020:bcf5c0a0-35d3-40f1-ac01-e614b8fa4b99,,Medium,,Dina Ahmed,712020:bcf5c0a0-35d3-40f1-ac01-e614b8fa4b99,Dina Ahmed,712020:bcf5c0a0-35d3-40f1-ac01-e614b8fa4b99,Dina Ahmed,712020:bcf5c0a0-35d3-40f1-ac01-e614b8fa4b99,31/Aug/26 1:33 PM,12/Sep/26 6:57 PM,,,,0,"*Steps:*
+Insert a new transaction using a valid existing sender account.
+
+* INSERT INTO Transactions
+(sender_account, receiver_account, transaction_type, amount, transaction_date)
+VALUES
+(1001, 1002, 'Transfer', 500, '2026-08-31');
+* *Preconditions:*
+* Transactions table exists.
+* Sender account {{1001}} exists in the Accounts table.
+* Receiver account {{1002}} exists.
+* Sender account has sufficient balance.
+
+*Test Data:*
+
+* sender_account = {{1001}} → Valid existing account
+* receiver_account = {{1002}}
+* transaction_type = {{Transfer}}
+* amount = {{500}}
+* transaction_date = {{2026-08-31}}
+
+*Test Environment:*
+MySQL
+
+*Expected Result:*
+Transaction record is created successfully because the sender account exists and is valid.",,Dina Ahmed,712020:bcf5c0a0-35d3-40f1-ac01-e614b8fa4b99,,,,,,,,,BTMSB-9,,,,{},,0|i000qf:,,,,,,,,,In Progress,12/Sep/26 6:57 PM
+TM_005 : Verify that a customer can create a valid Bill Payment transaction successfully,BTMSB-33,10243,Test Case,Failed,BTMSB,Banking Transaction Management System (BTMS),software,Dina Ahmed,712020:bcf5c0a0-35d3-40f1-ac01-e614b8fa4b99,,Medium,,Dina Ahmed,712020:bcf5c0a0-35d3-40f1-ac01-e614b8fa4b99,Dina Ahmed,712020:bcf5c0a0-35d3-40f1-ac01-e614b8fa4b99,Dina Ahmed,712020:bcf5c0a0-35d3-40f1-ac01-e614b8fa4b99,31/Aug/26 12:28 PM,12/Sep/26 12:06 PM,,,,0,"*Steps:*
+Insert a new Bill Payment transaction using valid mandatory data.
+
+* INSERT INTO Transactions
+(sender_account, receiver_account, transaction_type, amount, transaction_date)
+VALUES
+(1, NULL, 'Bill Payment', 500, '2026-08-31');
+* *Preconditions:*
+* Transactions table exists.
+* Sender account {{1}} exists.
+* Sender account has a balance greater than or equal to {{500}}.
+
+*Test Data:*
+
+* sender_account = 1
+* receiver_account = NULL
+* transaction_type = Bill Payment
+* amount = 500
+* transaction_date = 2026-08-31
+
+*Test Environment:*
+MySQL
+
+*Expected Result:*
+Transaction record is created successfully with a unique {{transaction_id}} generated automatically.",,Dina Ahmed,712020:bcf5c0a0-35d3-40f1-ac01-e614b8fa4b99,,,,,,,,,BTMSB-9,,BTMSB-138,,{},,0|i000n3:,,,,,,,,,Done,03/Oct/26 6:03 PM
+TM_004: Verify that a customer can create a valid Transfer transaction successfully.,BTMSB-31,10241,Test Case,Failed,BTMSB,Banking Transaction Management System (BTMS),software,Dina Ahmed,712020:bcf5c0a0-35d3-40f1-ac01-e614b8fa4b99,,Medium,,Dina Ahmed,712020:bcf5c0a0-35d3-40f1-ac01-e614b8fa4b99,Dina Ahmed,712020:bcf5c0a0-35d3-40f1-ac01-e614b8fa4b99,Dina Ahmed,712020:bcf5c0a0-35d3-40f1-ac01-e614b8fa4b99,31/Aug/26 12:27 PM,12/Sep/26 10:56 AM,13/Sep/26 9:52 AM,,,0,"
+
+*Steps:*
+Insert a new Transfer transaction using valid mandatory data.
+
+* INSERT INTO Transactions
+(sender_account, receiver_account, transaction_type, amount, transaction_date)
+VALUES
+(1001, 1002, 'Transfer', 500, '2026-08-31');
+* *Preconditions:*
+* Transactions table exists.
+* Sender account {{1001}} exists.
+* Receiver account {{1002}} exists.
+* Sender account has a balance greater than or equal to {{500}}.
+* Sender and receiver accounts are valid.
+
+*Test Data:*
+
+* sender_account = 1001
+* receiver_account = 1002
+* transaction_type = Transfer
+* amount = 500
+* transaction_date = 2026-08-31
+
+*Test Environment:*
+MySQL
+
+*Expected Result:*
+Transaction record is created successfully with a unique {{transaction_id}} generated automatically.",,Dina Ahmed,712020:bcf5c0a0-35d3-40f1-ac01-e614b8fa4b99,,,,,,,,,BTMSB-9,,OR-44,BTMSB-137,{},,0|i000mn:,,,,,,,,,Done,03/Oct/26 6:03 PM
+TM_003: Verify that a customer can create a valid Withdrawal transaction successfully.,BTMSB-29,10239,Test Case,Passed,BTMSB,Banking Transaction Management System (BTMS),software,Dina Ahmed,712020:bcf5c0a0-35d3-40f1-ac01-e614b8fa4b99,,Medium,,Dina Ahmed,712020:bcf5c0a0-35d3-40f1-ac01-e614b8fa4b99,Dina Ahmed,712020:bcf5c0a0-35d3-40f1-ac01-e614b8fa4b99,Dina Ahmed,712020:bcf5c0a0-35d3-40f1-ac01-e614b8fa4b99,31/Aug/26 12:25 PM,12/Sep/26 10:33 AM,,,,0,"*TM_002: Verify that a customer can create a valid Withdrawal transaction successfully.*
+
+*Steps:*
+Insert a new Withdrawal transaction using valid mandatory data.
+
+* INSERT INTO Transactions
+(sender_account, receiver_account, transaction_type, amount, transaction_date)
+VALUES
+(1001, NULL, 'Withdrawal', 500, '2026-08-31');
+
+*Preconditions:*
+
+* Transactions table exists.
+* Sender account {{1001}} exists.
+* Sender account has a balance greater than or equal to {{500}}.
+
+*Test Data:*
+
+* sender_account = 1001
+* receiver_account = NULL
+* transaction_type = Withdrawal
+* amount = 500
+* transaction_date = 2026-08-31
+
+*Test Environment:*
+MySQL
+
+*Expected Result:*
+Transaction record is created successfully with a unique {{transaction_id}} generated automatically.",,Dina Ahmed,712020:bcf5c0a0-35d3-40f1-ac01-e614b8fa4b99,,,,,,,,,BTMSB-9,,,,{},,0|i000m7:,,,,,,,,,In Progress,12/Sep/26 10:33 AM
+TM_002 : Verify that a customer can create a valid Deposit transaction successfully,BTMSB-28,10238,Test Case,Passed,BTMSB,Banking Transaction Management System (BTMS),software,Dina Ahmed,712020:bcf5c0a0-35d3-40f1-ac01-e614b8fa4b99,,Medium,,Dina Ahmed,712020:bcf5c0a0-35d3-40f1-ac01-e614b8fa4b99,Dina Ahmed,712020:bcf5c0a0-35d3-40f1-ac01-e614b8fa4b99,Dina Ahmed,712020:bcf5c0a0-35d3-40f1-ac01-e614b8fa4b99,31/Aug/26 12:23 PM,12/Sep/26 10:30 AM,,,,0,"*Steps:*
+Insert a new Deposit transaction using valid mandatory data.
+
+* INSERT INTO Transactions
+(sender_account, receiver_account, transaction_type, amount, transaction_date)
+VALUES
+(1001, NULL, 'Deposit', 500, '2026-08-31');
+
+*Preconditions:*
+
+* Transactions table exists.
+* Account {{1001}} exists.
+* Account {{1001}} is valid for receiving the deposit.
+
+*Test Data:*
+
+* sender_account = 1001
+* receiver_account = NULL
+* transaction_type = Deposit
+* amount = 500
+* transaction_date = 2026-08-31
+
+*Test Environment:*
+MySQL
+
+*Expected Result:*
+Transaction record is created successfully with a unique {{transaction_id}} generated automatically.",,Dina Ahmed,712020:bcf5c0a0-35d3-40f1-ac01-e614b8fa4b99,,,,,,,,,BTMSB-9,,,,{},,0|i000lz:,,,,,,,,,In Progress,12/Sep/26 10:30 AM
+TM_001 : Verify that a customer can create a transaction successfully using valid transaction data,BTMSB-22,10232,Test Case,Passed,BTMSB,Banking Transaction Management System (BTMS),software,Dina Ahmed,712020:bcf5c0a0-35d3-40f1-ac01-e614b8fa4b99,,Medium,,Dina Ahmed,712020:bcf5c0a0-35d3-40f1-ac01-e614b8fa4b99,Dina Ahmed,712020:bcf5c0a0-35d3-40f1-ac01-e614b8fa4b99,Dina Ahmed,712020:bcf5c0a0-35d3-40f1-ac01-e614b8fa4b99,31/Aug/26 12:13 PM,12/Sep/26 10:30 AM,,,,0,"*Steps:*
+Insert a new transaction using valid mandatory data
+
+* INSERT INTO Transactions
+(sender_account, receiver_account, transaction_type, amount, transaction_date)
+VALUES
+(1001, 1002, 'Transfer', 500, '2026-08-31');
+
+*Preconditions:*
+
+* Transactions table exists.
+* Sender account {{1001}} exists.
+* Receiver account {{1002}} exists.
+* Sender account has sufficient balance.
+
+*Test Data:*
+
+* sender_account = 1001
+* receiver_account = 1002
+* transaction_type = Transfer
+* amount = 500
+* transaction_date = 2026-08-31
+
+*Test Environment:*
+MySQL
+
+*Expected Result:*
+Transaction record is created successfully with a unique {{transaction_id}} generated automatically.",,Dina Ahmed,712020:bcf5c0a0-35d3-40f1-ac01-e614b8fa4b99,,,,,,,,,BTMSB-9,,,,{},,0|i000kn:,,,not ex,,,,,,In Progress,11/Sep/26 7:44 PM
