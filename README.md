@@ -260,7 +260,6 @@ The project included **119 executed test cases** and **16 tracked defects**.
 
 ```
 ---
----
 
 ## 👩‍💻 Author
 
