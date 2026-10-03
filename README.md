@@ -230,7 +230,11 @@ The project included **119 executed test cases** and **16 tracked defects**.
     └── Test-Plan.pdf
 
 04-Test-Cases/
-    └── Test-Cases.xlsx
+    ├── Test-cases.pdf
+    ├── test -cases.pdf
+    ├── Jira (1).csv
+    └── Jira (2).csv
+
 
 05-SQL/
     ├── INSERT-Queries.sql
@@ -238,7 +242,11 @@ The project included **119 executed test cases** and **16 tracked defects**.
     └── Validation-Queries.sql
 
 06-Defects/
-    └── Defect-Report.xlsx
+    ├── Bug-Report.pdf
+    └── Bug-Reports.pdf
+
+
+
 
 07-Test-Execution/
     └── Test-Execution-Results.xlsx
@@ -254,6 +262,6 @@ The project included **119 executed test cases** and **16 tracked defects**.
 
 ## 👩‍💻 Author
 
-Dina Ahmed
+**Dina Ahmed**
 
 Software Testing Engineer | Manual Testing | API Testing | Database Testing | Automation
