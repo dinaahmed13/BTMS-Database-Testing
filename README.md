@@ -258,6 +258,8 @@ The project included **119 executed test cases** and **16 tracked defects**.
 09-UAT/
     └── UAT-Document.pdf
 
+```
+---
 ---
 
 ## 👩‍💻 Author
